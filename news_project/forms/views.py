@@ -1,3 +1,10 @@
+from django.http import Http404
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Source
+
+def searchPage(request):
+    sourceList = Source.objects
+    context = {'sourceList': sourceList}
+    return render(request, 'search.html', context)
+
