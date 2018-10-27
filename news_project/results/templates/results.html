@@ -1,20 +1,70 @@
 {% extends './base.html' %}
 {% block content %}
-    <form class="form-signin">
-      <div class="text-center mb-4">
-        <!-- <img class="mb-4" src="./images/news.png" > -->
-        <svg xmlns="./images/news.svg"></svg>
-        <h1 class="h3 mb-3 font-weight-normal">HOLOS</h1>
-        <p>Get the Whole Story</p>
-      </div>
+<div class="container">
 
-      <div class="form-group">
-        <label for="inputKeywords">Search Topic</label>
-        <textarea class="form-control noresize" id="inputKeywords" rows="1" maxlength="30" placeholder="Topic" ></textarea>
-      </div>
-      
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-      <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/"></a>NewsAPI</p>
-      <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
-    </form>
+<hgroup class="mb20">
+<h1>Search Results</h1>
+<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>								
+</hgroup>
+
+<section class="col-xs-12 col-sm-6 col-md-12">
+<article class="search-result row">
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Lorem ipsum" /></a>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-2">
+    <ul class="meta-search">
+      <li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>
+      <li><i class="glyphicon glyphicon-time"></i> <span>4:28 pm</span></li>
+      <li><i class="glyphicon glyphicon-tags"></i> <span>People</span></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+    <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
+            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+  </div>
+  <span class="clearfix borda"></span>
+</article>
+
+    <article class="search-result row">
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/food" alt="Lorem ipsum" /></a>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-2">
+    <ul class="meta-search">
+      <li><i class="glyphicon glyphicon-calendar"></i> <span>02/13/2014</span></li>
+      <li><i class="glyphicon glyphicon-time"></i> <span>8:32 pm</span></li>
+      <li><i class="glyphicon glyphicon-tags"></i> <span>Food</span></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-7">
+    <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
+            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+  </div>
+  <span class="clearfix borda"></span>
+</article>
+
+<article class="search-result row">
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/sports" alt="Lorem ipsum" /></a>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-2">
+    <ul class="meta-search">
+      <li><i class="glyphicon glyphicon-calendar"></i> <span>01/11/2014</span></li>
+      <li><i class="glyphicon glyphicon-time"></i> <span>10:13 am</span></li>
+      <li><i class="glyphicon glyphicon-tags"></i> <span>Sport</span></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-7">
+    <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
+            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+  </div>
+  <span class="clearfix border"></span>
+</article>			
+
+</section>
+</div>
 {% endblock %}
