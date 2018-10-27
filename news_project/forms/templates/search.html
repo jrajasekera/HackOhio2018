@@ -1,39 +1,20 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
-    <link rel="icon" href="./images/news.ico">
-
-    <title>Holistic New</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/floating-labels/floating-labels.css" rel="stylesheet">
-  </head>
-
-  <body>
+{% extends './base.html' %}
+{% block content %}
     <form class="form-signin">
       <div class="text-center mb-4">
         <!-- <img class="mb-4" src="./images/news.png" > -->
         <svg xmlns="./images/news.svg"></svg>
         <h1 class="h3 mb-3 font-weight-normal">HOLOS</h1>
-        <p>Get the whole picture</p>
+        <p>Get the Whole Story</p>
       </div>
 
-      <div class="form-label-group">
-        <input type="email" id="inputKeywords" class="form-control" placeholder="Enter Topic" required autofocus>
+      <div class="form-group">
         <label for="inputKeywords">Search Topic</label>
+        <textarea class="form-control noresize" id="inputKeywords" rows="1" maxlength="30" placeholder="Topic" ></textarea>
       </div>
-
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
       <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/"></a>NewsAPI</p>
       <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
     </form>
-  </body>
-</html>
+{% endblock %}
