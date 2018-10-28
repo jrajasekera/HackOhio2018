@@ -4,7 +4,7 @@ from .forms import SearchForm
 from django.shortcuts import render_to_response, render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
-from .models import Source
+from .models import Source, SortBy, Category, Language, Country
 
 @ensure_csrf_cookie
 def searchPage(request):
