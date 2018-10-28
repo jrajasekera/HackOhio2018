@@ -106,6 +106,7 @@ if __name__ == '__main__':
           for individualarticle in articles:
               resultArticle = Article()
               resultArticle.setauthor(individualarticle['author'])
+              print(resultArticle.author())
               resultArticle.setcontent(individualarticle['content'])
               resultArticle.setdescription(individualarticle['description'])
               resultArticle.setpublishedat(individualarticle['publishedAt'])
