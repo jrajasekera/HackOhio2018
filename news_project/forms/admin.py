@@ -1,18 +1,15 @@
 from django.contrib import admin
-from .models import Source
-from .models import Sort
-from .models import Category
-from .models import Language
-from .models import Country
-
+from .models import Source, SortBy, Category, Language, Country, SearchHistory
 #Register models here
 
 admin.site.register(Source)
 
-admin.site.register(Sort)
+admin.site.register(SortBy)
 
 admin.site.register(Category)
 
 admin.site.register(Language)
 
 admin.site.register(Country)
+
+admin.site.register(SearchHistory)

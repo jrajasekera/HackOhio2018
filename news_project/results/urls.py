@@ -1,8 +1,8 @@
-# pages/urls.py
+# results/urls.py
 from django.urls import path
 
-from .views import resultsPage
+from .views import resultPage
 
 urlpatterns = [
-    path('resultsPage', resultsPage, name='results')
+    path('', resultPage, name='results'),
 ]

@@ -1,92 +1,47 @@
-<!doctype html>
-<html lang="en">
+{% extends './base.html' %}
+{% block content %}
+<form class="form-signin" name="form" action="searchPage" 
+    method="POST" style="overflow:auto" id="form"> 
+      {% csrf_token %}
+      <div class="text-center mb-4">
+        <!-- <img class="mb-4" src="./images/news.png" > -->
+        <svg xmlns="./images/news.svg"></svg>
+        <h1 class="h3 mb-3 font-weight-normal"><strong>HOLOS</strong></h1>
+        <p><em>Get the Whole Story</em></p>
+      </div>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
-  <link rel="icon" href="./images/news.ico">
+      <div style="overflow:auto" class="container">
+          <div class="scrolltable">
+            <table class="table table-bordered table-hover table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Political Bias</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in result %}
+                  <tr>
+                    <td> {{ result.title }}</td>
+                    <td> {{ result.description }}</td>
+                    <td> {{ result.source }}</td>
+                    <td> {{ result.bias }}</td>
+                    <td> {{ result.accuracy }}</td>
+                    <td> {{ result.url }}</td>
+                    <td> {{ result.date }}</td>
+                  </tr> 
+                {% endfor %}                
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-  <!-- Bootstrap core CSS -->
-  <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="https://getbootstrap.com/docs/4.0/examples/floating-labels/floating-labels.css" rel="stylesheet">
-
-  <title>Holistic News</title>
-
-
-  <style>
-    .scrolltable{
-        display:block;
-        /*max-height: 60%;
-        max-width: 70%;*/
-        overflow-y: auto;
-        overflow: scroll;
-        row-gap: 10px;
-      }
-    </style>
-</head>
-
-<body>
-  <form class="form-signin">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-    <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/"></a>NewsAPI</p>
-  </form>
-  <div class="container">
-    <div class="scrolltable">
-      <table class="table table-bordered table-hover table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</body>
-
-</html>
+      <p class="mt-5 mb-3 text-muted text-center"><a href="http://127.0.0.1:8000">Back to Search</a></p>
+      <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/" title=NewsAPI>NewsAPI</a></p>
+      <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+    </form>
+{% endblock %}

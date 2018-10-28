@@ -6,20 +6,37 @@
       <div class="text-center mb-4">
         <!-- <img class="mb-4" src="./images/news.png" > -->
         <svg xmlns="./images/news.svg"></svg>
-        <h1 class="h3 mb-3 font-weight-normal">HOLOS</h1>
-        <p>Get the Whole Story</p>
+        <h1 class="h3 mb-3 font-weight-normal"><strong>HOLOS</strong></h1>
+        <p><em>Get the Whole Story</em></p>
       </div>
-
-      <!-- <div class="form-group">
-        <label for="inputKeywords">Search Topic</label>
-        <textarea class="form-control noresize" id="inputKeywords" rows="1" maxlength="30" placeholder="Topic" ></textarea>
-      </div> -->
 
       <div class="form-group">
-        <!-- <label for="inputKeywords">Search Topic</label> -->
-        <input type="text" size="40" maxlength="30" placeholder="Search Topic" name="inputKeywords"/>
+        <label for="inputKeywords">Search Topic</label>
+        <!-- <textarea class="form-control noresize" id="inputKeywords" rows="1" maxlength="30" placeholder="Topic" ></textarea> -->
+        {{ form.inputKeywords }}
       </div>
-      
+
+      <div class="form-group">
+          <label for="ddSortBy">Sort By</label>
+         {{ form.ddSortBy }}
+      </div>       
+
+      <div class="form-group">
+          <label for="ddCategory">Category</label>
+         {{ form.ddCategory }}
+      </div> 
+
+      <div class="form-group">
+          <label for="ddLanguage">Language</label>
+         {{ form.ddLanguage }}
+      </div> 
+
+      <!-- <div class="form-group">
+          <label for="countrySelect">Country</label>
+         {{ form.countrySelect }}
+      </div>  -->
+     
+
       <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Search</button>
       <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/"></a>NewsAPI</p>
       <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
