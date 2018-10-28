@@ -50,7 +50,7 @@ class SearchForm(forms.Form):
 
     #Source USE EVERY SOURCE FOR NOW
 
-    #country form USE US FOR NOW
+    # Country form USE US FOR NOW
     # countryKey = 'displayctry'
     # sortQs = Country.objects.values(countryKey)
     # countrySelect = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=QuerySetToTupleList(sortQs, countryKey))
