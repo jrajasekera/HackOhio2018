@@ -9,7 +9,7 @@ from forms.models import SearchHistory
 
 import requests
 
-def createRequets(keywords, sortBy, category, language):
+def createRequest(keywords, sortBy, category, language):
     api_key = "d46c2a4c9f2842c5bcf9b1948f61afbe"
     url = "https://newsapi.org/v2/"
     
@@ -20,7 +20,7 @@ def createRequets(keywords, sortBy, category, language):
         '''Three options'''
 
     if keywords is not None:
-        url += 'q='+ keywords
+        url += 'q='+ keywords.toString
     
     if sources is not None:
         url += '&sources='+ sources
