@@ -1,7 +1,7 @@
 {% extends './base.html' %}
 {% block content %}
 <form class="form-signin" name="form" action="searchPage" 
-    method="POST"> 
+    method="POST" style="overflow:auto" id="form"> 
       {% csrf_token %}
       <div class="text-center mb-4">
         <!-- <img class="mb-4" src="./images/news.png" > -->
@@ -10,54 +10,31 @@
         <p><em>Get the Whole Story</em></p>
       </div>
 
-      <div class="container">
+      <div style="overflow:auto" class="container">
           <div class="scrolltable">
             <table class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Political Bias</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {% for r in result %}
+                  <tr>
+                    <td> {{ result.title }}</td>
+                    <td> {{ result.description }}</td>
+                    <td> {{ result.source }}</td>
+                    <td> {{ result.bias }}</td>
+                    <td> {{ result.accuracy }}</td>
+                    <td> {{ result.url }}</td>
+                    <td> {{ result.date }}</td>
+                  </tr> 
+                {% endfor %}                
               </tbody>
             </table>
           </div>
