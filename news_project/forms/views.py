@@ -24,7 +24,7 @@ def searchPage(request):
             #  form.cleaned_data['my_form_field_name']
             formList = ["inputKeywords","ddSortBy", "ddCategory", "ddLanguage"]
             printForm(formList, form)
-            return HttpResponseRedirect('http://cnn.com')
+            return HttpResponseRedirect('http://127.0.0.1:8000/results/')
         else:
             print('FORM NOT VALID, RETURNING TO SEARCH PAGE')
     else:
