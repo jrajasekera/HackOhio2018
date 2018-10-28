@@ -21,3 +21,10 @@ class Language(models.Model):
 class Country(models.Model):
     displayctry = models.CharField(max_length=85, primary_key=True)
     apiCtry = models.CharField(max_length=85)
+
+class SearchHistory(models.Model):
+    id = models.AutoField(primary_key=True)
+    keyword = models.CharField(max_length=30)
+    sortBy = models.CharField(max_length=30)
+    category = models.CharField(max_length=30)
+    language = models.CharField(max_length=30)
