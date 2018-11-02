@@ -1,12 +1,10 @@
 from django.shortcuts import render
-
 #from django import forms
 #from forms.forms as forms
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
 from forms.models import SearchHistory
-
 import requests
 
 def createRequest(keywords, sortBy, category, language):
@@ -64,16 +62,15 @@ def createRequest(keyword, sortBy, category, language):
     return url
 '''
 
+
 @ensure_csrf_cookie
 def resultPage(request):
     #return HttpResponse('Hello, World!')
     #return redirect("")
 
     latest = SearchHistory.objects.latest('id')
-    # print(latest.keyword)
-    # print(latest.sortBy)
-    # print(latest.category)
-    # print(latest.language)
-    print(createRequest(latest.keyword, latest.sortBy, latest.category, latest.language))
 
+    url = createRequest(latest.keyword, latest.sortBy, latest.category, latest.language)
+    print('url = ' + url)
+    
     return render(request, 'results.html', {})
