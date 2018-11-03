@@ -2,15 +2,6 @@ from django import forms
 from .models import Source, SortBy, Category, Language, Country
 
 
-CHOICES = [("choice1","c1"),("choice2","c2")]
-#querySet = SortBy.objects.values('displaySortBy')
-# print(querySet)
-# len=len(list(querySet))
-# print(len)
-# print(list(querySet)[2]["displaySortBy"])
-
-
-
 def QuerySetToList(qSet, keyName):
     newList = []
     lenth = len(list(qSet))
@@ -36,17 +27,13 @@ class SearchForm(forms.Form):
     #sortBy form
     sortKey = 'displaySortBy'
     sortQs = SortBy.objects.values(sortKey)
-    ddSortBy = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, sortKey)))
+    ddSortBy = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, sortKey)), initial = 'Relevance')
     
-    # Category
-    categoryKey = 'displayCat'
-    sortQs = Category.objects.values(categoryKey)
-    ddCategory = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, categoryKey)))
 
     # Language
     languageKey = 'displayLang'
     sortQs = Language.objects.values(languageKey)
-    ddLanguage = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, languageKey)))
+    ddLanguage = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, languageKey)), initial = 'English')
 
     #Source USE EVERY SOURCE FOR NOW
 

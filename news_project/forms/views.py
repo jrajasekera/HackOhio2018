@@ -18,7 +18,6 @@ def printForm(items, form):
 
 def saveSearch(form):
     item = SearchHistory()
-    item.category = form.cleaned_data['ddCategory']
     item.keyword = form.cleaned_data['inputKeywords']
     item.language = form.cleaned_data['ddLanguage']
     item.sortBy = form.cleaned_data['ddSortBy']
@@ -31,11 +30,8 @@ def searchPage(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             print('VALID FORM. NAVIGATING TO RESULTS PAGE')
-            #  form.cleaned_data['my_form_field_name']
-            formList = ["inputKeywords","ddSortBy", "ddCategory", "ddLanguage"]
+            formList = ["inputKeywords","ddSortBy", "ddLanguage"]
             printForm(formList, form)
-            #resultsURL = reverse('results', kwargs={'sortBy': 'date'})
-            #return HttpResponseRedirect(resultsURL)
             saveSearch(form)
             return HttpResponseRedirect('http://127.0.0.1:8000/results/')
         else:
