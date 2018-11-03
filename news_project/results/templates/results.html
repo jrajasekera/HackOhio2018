@@ -1,4 +1,5 @@
 {% extends './base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <form class="form-signin" name="form" action="searchPage" 
     method="POST" style="overflow:auto" id="form"> 
@@ -10,35 +11,38 @@
         <p><em>Get the Whole Story</em></p>
       </div>
 
-      <div style="overflow:auto" class="container">
-          <div class="scrolltable">
-            <table class="table table-bordered table-hover table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Source</th>
-                  <th scope="col">Political Bias</th>
-                  <th scope="col">URL</th>
-                  <th scope="col">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for r in result %}
-                  <tr>
-                    <td> {{ result.title }}</td>
-                    <td> {{ result.description }}</td>
-                    <td> {{ result.source }}</td>
-                    <td> {{ result.bias }}</td>
-                    <td> {{ result.accuracy }}</td>
-                    <td> {{ result.url }}</td>
-                    <td> {{ result.date }}</td>
-                  </tr> 
-                {% endfor %}                
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <table id="t">
+        <thead>
+          <tr>
+            <th>Example text</th>
+            <th>Example text</th>
+            <th>Example text</th>
+            <th>Example text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A much longer piece of content for demo purposes. More goes here.</td>
+            <td>Example text</td>
+            <td>Example text</td>
+            <td>Example text</td>
+          </tr>
+          <tr>
+            <td>Example text</td>
+            <td>Example text</td>
+            <td>Example text</td>
+            <td>Example text</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Example text</td>
+            <td>Example text</td>
+            <td>Example text</td>
+            <td>Example text</td>
+          </tr>
+        </tfoot>
+      </table>
 
       <p class="mt-5 mb-3 text-muted text-center"><a href="http://127.0.0.1:8000">Back to Search</a></p>
       <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/" title=NewsAPI>NewsAPI</a></p>

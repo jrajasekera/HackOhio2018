@@ -1,4 +1,5 @@
 {% extends './base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <form class="form-signin" name="form" action="searchPage" 
     method="POST"> 
@@ -11,18 +12,18 @@
       </div>
 
       <div class="form-group">
-        <label for="inputKeywords">Search Topic</label>      
-        {{ form.inputKeywords }}
+        <!-- <label for="inputKeywords">Search Topic</label>  -->
+        {{ form.inputKeywords|as_crispy_field }}
       </div>
 
       <div class="form-group">
-          <label for="ddSortBy">Sort By</label>
-         {{ form.ddSortBy }}
+          <!-- <label for="ddSortBy">Sort By</label> -->
+         {{ form.ddSortBy|as_crispy_field }}
       </div>       
 
       <div class="form-group">
-          <label for="ddLanguage">Language</label>
-         {{ form.ddLanguage }}
+          <!-- <label for="ddLanguage">Language</label> -->
+         {{ form.ddLanguage|as_crispy_field }}
       </div> 
      
 
