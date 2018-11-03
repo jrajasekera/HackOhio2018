@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
-from forms.models import SearchHistory
+from forms.models import SearchHistory, Language, SortBy
 import requests
+import json
 
 def createRequest(keywords, sort, language, sites):
     apiKey = '06b22f60-789d-4906-9a37-1b7299747ecc'
@@ -11,7 +12,7 @@ def createRequest(keywords, sort, language, sites):
 
     defaultKeywords = 'world news'
     defaultSort = 'relevancy'
-    defaultSize = '20'
+    defaultSize = '50'
     defaultExtractionAccuracyConfidence = 'high'
     defaultLanguage = 'english'
     defaultSiteType = 'news'
@@ -24,7 +25,7 @@ def createRequest(keywords, sort, language, sites):
 
     # sort
     if sort is not None:
-        urlBase += '&sort=' + sort
+        urlBase += '&sort=' + SortBy.objects.get(displaySortBy = sort).apiSortBy
     else:
         urlBase += '&sort=' + defaultSort
 
@@ -36,7 +37,7 @@ def createRequest(keywords, sort, language, sites):
 
     # language
     if language is not None:
-        urlBase += '&language=' + language
+        urlBase += '&language=' + Language.objects.get(displayLang = language).apiLang
     else:
         urlBase += '&language=' + defaultLanguage
 
@@ -50,6 +51,33 @@ def createRequest(keywords, sort, language, sites):
 
     return urlBase
 
+class Article:
+    def __init__(self, site, title, date, url, author, articleText):
+        self.site = site
+        self.title = title
+        self.date = date
+        self.url = url
+        self.author = author
+        self.articleText = articleText
+
+def JsonToArticles(json_data):
+    posts = json_data['posts']
+    results = len(posts)
+    articleList = []
+
+    for i in range(results):
+        post = posts[i]
+        site = post['thread']['site']
+        title = post['title']
+        date = post['published']
+        url = post['url']
+        author = post['author']
+        articleText = post['text']
+
+        article = Article(site, title, date, url, author, articleText)
+        articleList.append(article)
+    
+    return articleList
 
 @ensure_csrf_cookie
 def resultPage(request):
@@ -57,7 +85,20 @@ def resultPage(request):
     latest = SearchHistory.objects.latest('id')
 
     sites = ['cnn.com','foxnews.com','nytimes.com','washingtonpost.com'] 
+    # create url query for api
     url = createRequest(latest.keyword, latest.sortBy, latest.language, sites)
     print('url = ' + url)
+
+    #send request
+    try:
+        JsonResponse = requests.get(url)
+        jsonData = JsonResponse.json()
+        articleList = JsonToArticles(jsonData)
+
+        for i in range(len(articleList)):
+            print(str(i) + ': ' + articleList[i].title)
+    except requests.exceptions.RequestException as e:
+        print('ERROR GETTING DATA FROM WEBHOSE API')
+        print(e)     
 
     return render(request, 'results.html', {})
