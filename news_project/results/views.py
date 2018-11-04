@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
-from forms.models import SearchHistory, Language, SortBy
+from forms.models import SearchHistory, Language, SortBy, Source
 import requests
 import json
 
-def createRequest(keywords, sort, language, sites):
+def createRequest(keywords, sort, language):
     apiKey = '06b22f60-789d-4906-9a37-1b7299747ecc'
     urlBase = 'https://webhose.io/filterWebContent?token=' + apiKey + '&format=json'
 
@@ -45,9 +45,9 @@ def createRequest(keywords, sort, language, sites):
     urlBase += '&site_type=' + defaultSiteType
 
     # sites
-    for site in sites:
-        if site is not None:
-            urlBase += '&site=' + site
+    SiteList = Source.objects.all()
+    for site in SiteList:
+        urlBase += '&site=' + site.srcName
 
     return urlBase
 
@@ -84,21 +84,20 @@ def resultPage(request):
 
     latest = SearchHistory.objects.latest('id')
 
-    sites = ['cnn.com','foxnews.com','nytimes.com','washingtonpost.com'] 
     # create url query for api
-    url = createRequest(latest.keyword, latest.sortBy, latest.language, sites)
+    url = createRequest(latest.keyword, latest.sortBy, latest.language)
     print('url = ' + url)
 
     #send request
     try:
-        JsonResponse = requests.get(url)
-        jsonData = JsonResponse.json()
-        articleList = JsonToArticles(jsonData)
-
-        for i in range(len(articleList)):
-            print(str(i) + ': ' + articleList[i].title)
+        # JsonResponse = requests.get(url)
+        # jsonData = JsonResponse.json()
+        # articleList = JsonToArticles(jsonData)
+        
+        # return render(request, 'results.html', {'articleList':articleList,})
+        return render(request, 'results.html', {})
     except requests.exceptions.RequestException as e:
         print('ERROR GETTING DATA FROM WEBHOSE API')
         print(e)     
-
-    return render(request, 'results.html', {})
+        return render(request, 'results.html', {})
+    
