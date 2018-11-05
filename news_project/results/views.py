@@ -90,12 +90,12 @@ def resultPage(request):
 
     #send request
     try:
-        # JsonResponse = requests.get(url)
-        # jsonData = JsonResponse.json()
-        # articleList = JsonToArticles(jsonData)
+        JsonResponse = requests.get(url)
+        jsonData = JsonResponse.json()
+        articleList = JsonToArticles(jsonData)
         
-        # return render(request, 'results.html', {'articleList':articleList,})
-        return render(request, 'results.html', {})
+        return render(request, 'results.html', {'articleList':articleList,})
+        # return render(request, 'results.html', {})
     except requests.exceptions.RequestException as e:
         print('ERROR GETTING DATA FROM WEBHOSE API')
         print(e)     

@@ -34,7 +34,7 @@
             </table>  
       </div>       -->
 
-      <div id="accordion">
+      <!-- <div id="accordion">
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
@@ -78,7 +78,29 @@
               </div>
             </div>
           </div>
+        </div> -->
+
+        <div style="overflow-y: auto; height: 500px;">
+            <div id="articles">
+                {% for article in articleList %}
+                <a href="">{{ article.title }}</a><br />
+                <div style="display: none; border: 2px solid red; border-radius: 5px;">
+                  <a>Source: {{ article.site }}</a><br/>
+                  <a href="{{ article.url }}" target="_blank">Link</a><br/> 
+                </div>   
+                <br/>   
+                {% endfor %}                  
+            </div>
         </div>
+
+      
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+      <script type="text/javascript">
+      $('#articles > a').click(function(){
+          $(this).next().next().slideToggle();
+          return false;
+      });
+      </script>
 
       <p class="mt-5 mb-3 text-muted text-center"><a href="http://127.0.0.1:8000">Back to Search</a></p>
       <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/" title=NewsAPI>NewsAPI</a></p>
