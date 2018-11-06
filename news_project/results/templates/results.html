@@ -80,15 +80,18 @@
           </div>
         </div> -->
 
-        <div style="overflow-y: auto; height: 500px;">
+        <div style="overflow-y: auto; height: 450px;">
             <div id="articles">
                 {% for article in articleList %}
-                <a href="">{{ article.title }}</a><br />
-                <div style="display: none; border: 2px solid red; border-radius: 5px;">
-                  <a>Source: {{ article.site }}</a><br/>
-                  <a href="{{ article.url }}" target="_blank">Link</a><br/> 
-                </div>   
-                <br/>   
+                <a href="">{{ article.title }}</a><a> &#9660</a><br />
+                <div style="display: none; border: 3px solid blue; border-radius: 5px;">
+                  <a><strong>Source:</strong> {{ article.site }}</a><br/>
+                  <a><strong>Partisan Bias:</strong> {{ article.partisanBias }}</a><br/>
+                  <a><strong>Factual Accuracy:</strong> {{ article.factualAccuracy }}</a><br/>
+                  <a><strong>Text:</strong> <i>{{ article.articleText }}...</i></a><br/>
+                  <a href="{{ article.url }}" target="_blank">Link to Full Article</a><br/> 
+                </div>
+                <hr width="100%" style="border: 2px dashed #C0C0C0" color="#FFFFFF" size="6">                   
                 {% endfor %}                  
             </div>
         </div>
@@ -97,7 +100,7 @@
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
       <script type="text/javascript">
       $('#articles > a').click(function(){
-          $(this).next().next().slideToggle();
+          $(this).next().next().next().slideToggle();
           return false;
       });
       </script>

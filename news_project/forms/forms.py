@@ -28,7 +28,7 @@ class SearchForm(forms.Form):
     #sortBy form
     sortKey = 'displaySortBy'
     sortQs = SortBy.objects.values(sortKey)
-    ddSortBy = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, sortKey)), initial = 'Relevance')
+    ddSortBy = forms.CharField(widget=forms.Select(choices=QuerySetToTupleList(sortQs, sortKey)), initial = 'Relevancy')
     
 
     # Language

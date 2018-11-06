@@ -5,6 +5,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from forms.models import SearchHistory, Language, SortBy, Source
 import requests
 import json
+import re
 
 def createRequest(keywords, sort, language):
     apiKey = '06b22f60-789d-4906-9a37-1b7299747ecc'
@@ -51,14 +52,46 @@ def createRequest(keywords, sort, language):
 
     return urlBase
 
+def cleanHtml(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
+
+def getSourceRating(source):
+    
+    try:
+        dbSrc = Source.objects.get(srcName = source)
+        partisanBias = dbSrc.partisanBias
+        factualAccuracy = dbSrc.factualAccuracy
+    except Content.DoesNotExist:
+        partisanBias = 1000
+        factualAccuracy = 1000    
+    
+    return (partisanBias, factualAccuracy)
+
+def getSourceDisplayName(source):
+    try:
+        dbSrc = Source.objects.get(srcName = source)
+        displayName = dbSrc.displayName
+    except Content.DoesNotExist:   
+        displayName = source
 class Article:
-    def __init__(self, site, title, date, url, author, articleText):
+    def __init__(self, site, title, date, url, author, articleText, partisanBias, factualAccuracy):
         self.site = site
         self.title = title
         self.date = date
         self.url = url
         self.author = author
-        self.articleText = articleText
+        self.articleText = cleanHtml(articleText)[:430]
+        if partisanBias == 1000:
+            self.partisanBias = 'Not Available'
+        else:
+            self.partisanBias = partisanBias
+
+        if factualAccuracy == 1000:        
+            self.factualAccuracy = 'Not Available'
+        else:
+            self.factualAccuracy = factualAccuracy
 
 def JsonToArticles(json_data):
     posts = json_data['posts']
@@ -73,9 +106,11 @@ def JsonToArticles(json_data):
         url = post['url']
         author = post['author']
         articleText = post['text']
+        partisanBias, factualAccuracy = getSourceRating(site)
+        article = Article(site, title, date, url, author, articleText, partisanBias, factualAccuracy)
 
-        article = Article(site, title, date, url, author, articleText)
-        articleList.append(article)
+        if title != '':
+            articleList.append(article)
     
     return articleList
 
