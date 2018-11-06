@@ -75,23 +75,58 @@ def getSourceDisplayName(source):
         displayName = dbSrc.displayName
     except Content.DoesNotExist:   
         displayName = source
+    return displayName
+
+def getPartisanBiasDesc(bias):
+    if -42 <= bias and bias <= -31:
+        biasDesc = 'Most Extreme Left'
+    elif -30 <= bias and bias <= -19:
+        biasDesc = 'Hyper-Partisan Left'
+    elif -18 <= bias and bias <= -7:
+        biasDesc = 'Skews Left'
+    elif -6 <= bias and bias <= 6:
+        biasDesc = 'Neutral'
+    elif 7 <= bias and bias <= 18:
+        biasDesc = 'Skews Right'
+    elif 19 <= bias and bias <= 30:
+        biasDesc = 'Hyper-Partisan Right'
+    elif 31 <= bias and bias <= 42:
+        biasDesc = 'Most Extreme Right'
+    else:
+        biasDesc = 'Not Available'
+    return biasDesc
+
+def getFactualAccuracyDesc(accuracy):
+    if 0 <= accuracy and accuracy <= 7:
+        accuracyDesc = 'Contains Inaccurate/Fabricated Info'
+    elif 8 <= accuracy and accuracy <= 15:
+        accuracyDesc = 'Propaganda/Contains Misleading Info'
+    elif 16 <= accuracy and accuracy <= 23:
+        accuracyDesc = 'Selective or Incomplete Story; Unfair Persuasion'
+    elif 24 <= accuracy and accuracy <= 31:
+        accuracyDesc = 'Opinion; Fair Persuasion'
+    elif 32 <= accuracy and accuracy <= 39:
+        accuracyDesc = 'Analysis'
+    elif 40 <= accuracy and accuracy <= 47:
+        accuracyDesc = 'Complex Analysis OR Mix of Fact Reporting and Analysis'
+    elif 48 <= accuracy and accuracy <= 55:
+        accuracyDesc = 'Fact Reporting'
+    elif 56 <= accuracy and accuracy <= 64:
+        accuracyDesc = 'Original Fact Reporting'
+    else:
+        accuracyDesc = 'Not Available'
+    return accuracyDesc
+
 class Article:
     def __init__(self, site, title, date, url, author, articleText, partisanBias, factualAccuracy):
-        self.site = site
+        self.site = getSourceDisplayName(site)
         self.title = title
         self.date = date
         self.url = url
         self.author = author
         self.articleText = cleanHtml(articleText)[:430]
-        if partisanBias == 1000:
-            self.partisanBias = 'Not Available'
-        else:
-            self.partisanBias = partisanBias
-
-        if factualAccuracy == 1000:        
-            self.factualAccuracy = 'Not Available'
-        else:
-            self.factualAccuracy = factualAccuracy
+        self.partisanBias = getPartisanBiasDesc(partisanBias)      
+        self.factualAccuracy = getFactualAccuracyDesc(factualAccuracy)
 
 def JsonToArticles(json_data):
     posts = json_data['posts']
