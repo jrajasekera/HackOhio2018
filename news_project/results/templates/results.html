@@ -1,85 +1,20 @@
 {% extends './base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form class="form-signin" name="form" action="searchPage" 
-    method="POST" style="overflow:auto" id="form"> 
-      {% csrf_token %}
+{% csrf_token %}
+<table style="width:90%; height:90%">
+  <tr>
+    <td>    
       <div class="text-center mb-4">
-        <!-- <img class="mb-4" src="./images/news.png" > -->
-        <svg xmlns="./images/news.svg"></svg>
-        <h1 class="h3 mb-3 font-weight-normal"><strong>HOLOS</strong></h1>
-        <p><em>Get the Whole Story</em></p>
+      <!-- <img class="mb-4" src="./images/news.png" > -->
+      <svg xmlns="./images/news.svg"></svg>
+      <h1 class="h3 mb-3 font-weight-normal"><strong>HOLOS</strong></h1>
+      <p><em>Get the Whole Story</em></p>
       </div>
-      
-      <!-- <div style="overflow-y:auto;">
-          <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Site</th>
-                  <th>Article Text</th>
-                  <th>URL</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for article in articleList %}
-                <tr>
-                    <td>{{ article.title }}</td>
-                    <td>{{ article.site }}</td>
-                    <td>{{ article.articleText }}</td>
-                    <td>{{ article.url }}</td>
-                </tr>
-                {% endfor %}                    
-              </tbody>        
-            </table>  
-      </div>       -->
-
-      <!-- <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Collapsible Group Item #1
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Collapsible Group Item #2
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Collapsible Group Item #3
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-        </div> -->
-
+    </td>
+  </tr>
+  <tr>
+    <td>
         <div style="overflow-y: auto; height: 450px;">
             <div id="articles">
                 {% for article in articleList %}
@@ -95,7 +30,6 @@
                 {% endfor %}                  
             </div>
         </div>
-
       
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
       <script type="text/javascript">
@@ -104,9 +38,19 @@
           return false;
       });
       </script>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <p class="mt-5 mb-3 text-muted text-center"><a href="http://127.0.0.1:8000">Back to Search</a></p>
+        <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://webhose.io/products/news-feeds/" title="NewsAPI">webhose.io</a></p>
+        <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+    </td>
+  </tr>
+</table>
 
-      <p class="mt-5 mb-3 text-muted text-center"><a href="http://127.0.0.1:8000">Back to Search</a></p>
-      <p class="mt-5 mb-3 text-muted text-center">Search Powered by <a href="https://newsapi.org/" title=NewsAPI>NewsAPI</a></p>
-      <p class="mt-5 mb-3 text-muted text-center">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
-    </form>
+<!-- <form class="form-signin" name="form" action="searchPage" 
+    method="POST" style="overflow:auto" id="form">  -->
+      
+    <!-- </form> -->
 {% endblock %}
